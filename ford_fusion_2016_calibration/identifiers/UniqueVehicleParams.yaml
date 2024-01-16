@@ -1,0 +1,10 @@
+# Defines the ros parameters which define a unique vehicles specific traits
+
+# String: Host vehicle color
+vehicle_color: 'WHITE'
+
+# String: Host vehicle’s Unique ID that will be used in mobility messages.
+vehicle_id: 'RANCS-FUSION'
+
+# Double: Approximation of delay in vehicle acceleration response to changes in speed command
+vehicle_response_lag: 0.2
