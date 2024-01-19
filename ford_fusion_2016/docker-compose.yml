@@ -17,7 +17,7 @@ version: '2'
 
 services:
   roscore:
-    image: usdotfhwastoldev/carma-base:carma-system-4.4.3
+    image: usdotfhwastol/carma-base:carma-system-4.4.3
     network_mode: host
     container_name: roscore
     volumes_from:
@@ -31,7 +31,7 @@ services:
     command: roscore
 
   platform:
-    image: usdotfhwastoldev/carma-platform:carma-system-4.4.2
+    image: usdotfhwastol/carma-platform:carma-system-4.4.2
     network_mode: host
     container_name: platform
     volumes_from:
@@ -50,7 +50,7 @@ services:
     command: bash -c 'wait-for-it.sh localhost:11311 -- roslaunch /opt/carma/vehicle/config/carma_docker.launch'
 
   platform_ros2:
-    image: usdotfhwastoldev/carma-platform:carma-system-4.4.2
+    image: usdotfhwastol/carma-platform:carma-system-4.4.2
     network_mode: host
     container_name: platform_ros2
     volumes_from:
@@ -67,7 +67,7 @@ services:
     command: bash -c 'source /opt/carma/install_ros2/setup.bash && ros2 launch /opt/carma/vehicle/config/carma_docker.launch.py'
 
   ros1_bridge:
-    image: usdotfhwastoldev/carma-msgs:carma-system-4.4.3
+    image: usdotfhwastol/carma-msgs:carma-system-4.4.3
     network_mode: host
     container_name: ros1_bridge
     volumes_from:
@@ -133,7 +133,7 @@ services:
       - /opt/carma/vehicle/calibration:/opt/carma/vehicle/calibration
     command: bash -c '. ./devel/setup.bash && export ROS_NAMESPACE=$${CARMA_INTR_NS} && wait-for-it.sh localhost:11311 -- roslaunch /opt/carma/vehicle/config/drivers.launch drivers:=dataspeed_controller'
 
- lightbar-driver:
+  lightbar-driver:
    image: usdotfhwastoldev/carma-lightbar-driver:develop
    network_mode: host
    container_name: lightbar-driver
