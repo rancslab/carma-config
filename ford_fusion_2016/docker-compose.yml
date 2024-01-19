@@ -133,19 +133,19 @@ services:
       - /opt/carma/vehicle/calibration:/opt/carma/vehicle/calibration
     command: bash -c '. ./devel/setup.bash && export ROS_NAMESPACE=$${CARMA_INTR_NS} && wait-for-it.sh localhost:11311 -- roslaunch /opt/carma/vehicle/config/drivers.launch drivers:=dataspeed_controller'
 
-#  lightbar-driver:
-#    image: usdotfhwastoldev/carma-lightbar-driver:develop
-#    network_mode: host
-#    container_name: lightbar-driver
-#    volumes_from:
-#      - container:carma-config:ro
-#    volumes:
-#      - /opt/carma/logs:/opt/carma/logs
-#      - /opt/carma/.ros:/home/carma/.ros
-#      - /opt/carma/vehicle/calibration:/opt/carma/vehicle/calibration
-#    environment:
-#      - ROS_IP=192.168.88.10
-#    command: bash -c 'export ROS_NAMESPACE=$${CARMA_INTR_NS} && wait-for-it.sh localhost:11311 -- roslaunch /opt/carma/vehicle/config/drivers.launch drivers:=lightbar_driver'
+ lightbar-driver:
+   image: usdotfhwastoldev/carma-lightbar-driver:develop
+   network_mode: host
+   container_name: lightbar-driver
+   volumes_from:
+     - container:carma-config:ro
+   volumes:
+     - /opt/carma/logs:/opt/carma/logs
+     - /opt/carma/.ros:/home/carma/.ros
+     - /opt/carma/vehicle/calibration:/opt/carma/vehicle/calibration
+   environment:
+     - ROS_IP=192.168.88.10
+   command: bash -c 'export ROS_NAMESPACE=$${CARMA_INTR_NS} && wait-for-it.sh localhost:11311 -- roslaunch /opt/carma/vehicle/config/drivers.launch drivers:=lightbar_driver'
 
   cohda_dsrc_driver:
     image: usdotfhwastoldev/carma-cohda-dsrc-driver:develop
