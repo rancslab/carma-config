@@ -130,19 +130,19 @@ services:
   #     - /opt/carma/vehicle/calibration:/opt/carma/vehicle/calibration
   #   command: bash -c 'export ROS_NAMESPACE=$${CARMA_INTR_NS} && wait-for-it.sh localhost:11311 -- roslaunch /opt/carma/vehicle/config/drivers.launch drivers:=ssc_interface_wrapper'
 
-  novatel_gnss_imu_driver:
-    image: usdotfhwastol/carma-novatel-oem7-driver-wrapper:carma-system-4.4.0
-    container_name: carma-novatel-oem7-driver-wrapper
-    network_mode: host
-    volumes_from:
-      - container:carma-config:ro
-    environment:
-      - CYCLONEDDS_URI=${CYCLONEDDS_URI}
-    volumes:
-      - /opt/carma/logs:/opt/carma/logs
-      - /opt/carma/.ros:/home/carma/.ros
-      - /opt/carma/vehicle/calibration:/opt/carma/vehicle/calibration
-    command: bash -c 'source /opt/carma/install/setup.bash && ros2 launch /opt/carma/vehicle/config/drivers.launch.py drivers:=carma_novatel_driver_wrapper'
+  # novatel_gnss_imu_driver:
+  #   image: usdotfhwastol/carma-novatel-oem7-driver-wrapper:carma-system-4.4.0
+  #   container_name: carma-novatel-oem7-driver-wrapper
+  #   network_mode: host
+  #   volumes_from:
+  #     - container:carma-config:ro
+  #   environment:
+  #     - CYCLONEDDS_URI=${CYCLONEDDS_URI}
+  #   volumes:
+  #     - /opt/carma/logs:/opt/carma/logs
+  #     - /opt/carma/.ros:/home/carma/.ros
+  #     - /opt/carma/vehicle/calibration:/opt/carma/vehicle/calibration
+  #   command: bash -c 'source /opt/carma/install/setup.bash && ros2 launch /opt/carma/vehicle/config/drivers.launch.py drivers:=carma_novatel_driver_wrapper'
 
   velodyne_lidar_driver:
     image: usdotfhwastol/carma-velodyne-lidar-driver:carma-system-4.4.0
@@ -181,19 +181,19 @@ services:
   # TODO Delphi Srr2 Rear Left Driver Node
   # TODO Delphi Srr2 Rear Right Driver Node
   
-  ouster-lidar-driver:
-    image: usdotfhwastoldev/carma-ouster-lidar-driver:develop
-    container_name: ouster-lidar-driver
-    network_mode: host
-    volumes_from:
-      - container:carma-config:ro
-    environment:
-      - ROS_IP=127.0.0.1
-    volumes:
-      - /opt/carma/logs:/opt/carma/logs
-      - /opt/carma/.ros:/home/carma/.ros
-      - /opt/carma/vehicle/calibration:/opt/carma/vehicle/calibration
-    command: bash -c '. ./devel/setup.bash && export ROS_NAMESPACE=$${CARMA_INTR_NS} && wait-for-it.sh localhost:11311 -- roslaunch /opt/carma/vehicle/config/drivers.launch drivers:=ouster_lidar'
+  # ouster-lidar-driver:
+  #   image: usdotfhwastoldev/carma-ouster-lidar-driver:develop
+  #   container_name: ouster-lidar-driver
+  #   network_mode: host
+  #   volumes_from:
+  #     - container:carma-config:ro
+  #   environment:
+  #     - ROS_IP=127.0.0.1
+  #   volumes:
+  #     - /opt/carma/logs:/opt/carma/logs
+  #     - /opt/carma/.ros:/home/carma/.ros
+  #     - /opt/carma/vehicle/calibration:/opt/carma/vehicle/calibration
+  #   command: bash -c '. ./devel/setup.bash && export ROS_NAMESPACE=$${CARMA_INTR_NS} && wait-for-it.sh localhost:11311 -- roslaunch /opt/carma/vehicle/config/drivers.launch drivers:=ouster_lidar'
 
   dataspeed-can-driver:
     image: usdotfhwastoldev/carma-dataspeed-can-driver:develop
